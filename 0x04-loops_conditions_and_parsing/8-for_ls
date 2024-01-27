@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Bash script that displays...
+for i in *
+do
+	for ((j=0; j<${#i}; j++))
+	do
+		c="${i:$j:1}"
+		if [ "$c" != "-" ]
+		then
+			continue
+		else
+			break
+		fi
+	done
+	((j++))
+	echo "${i:$j}"
+done
