@@ -3,11 +3,9 @@
 file {~/.ssh/config:
   ensure  => present,
   mode    => '0700',
-  content => "
-    Host remote_host,
-       user ubuntu,
-       HostName 18.207.207.117,
-       IdentifyFile ~/.ssh/school
-",
+  content => "Host remote_host\n
+       User ubuntu\n
+       HostName 18.207.207.117\n
+       IdentifyFile ~/.ssh/school",
   owner   => 'root'
 }
