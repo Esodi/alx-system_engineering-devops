@@ -2,7 +2,7 @@
 # make changes to the ssh configuration file.
 include stdlib
 
-file { 'SSH_Key':
+file_line { 'SSH_Key':
   path               => '/etc/ssh/ssh_config',
   line               => '    IdentityFile ~/.ssh/school',
   match              => '^[#]+[\s]*(?i)IdentityFile[\s]+~/.ssh/id_rsa$',
@@ -10,7 +10,7 @@ file { 'SSH_Key':
   append_on_no_match => true
 }
 
-file { 'NO passwd':
+file_line { 'NO passwd':
   path               => '/etc/ssh/ssh_config',
   line               => '    PasswordAuthentication no',
   match              => '^[#]+[\s]*(?i)PasswordAuthentication[\s]+(yes|no)$',
