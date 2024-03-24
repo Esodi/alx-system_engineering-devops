@@ -1,0 +1,4 @@
+Host remote_host
+   HostName 18.207.207.117
+   User ubuntu
+   IdentifyFile ~/.ssh/school
