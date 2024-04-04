@@ -7,11 +7,11 @@ sudo apt-get install nginx -y
 
 sudo nginx
 
-sudo sed s/80 default_server;/80 default_server;\n"$(printf '\t')"root /var/www/html;/g /etc/nginx/sites-available/default
+sudo sed -i 's/80 default_server;/80 default_server;\n\troot \/var\/www\/html;/g' /etc/nginx/sites-available/default
 
-sudo cp /var/www/html/index.index.nginx-debian.html /var/www/html/index.index.nginx-debian.x
+sudo cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.x
 
-sudo truncate -s 0 /var/www/html/index.index.nginx-debian.html
+sudo truncate -s 0 /var/www/html/index.nginx-debian.html
 
 echo -e "Hello World!" | sudo tee /var/www/html/index.index.nginx-debian.html
 
@@ -25,7 +25,7 @@ echo 'server {
     }
 }' | sudo tee /etc/nginx/sites-available/redirect_config
 
-sudo ln -s etc/nginx/sites-available/redirect_config etc/nginx/sites-enabled
+sudo ln -s /etc/nginx/sites-available/redirect_config /etc/nginx/sites-enabled
 
 sudo nginx -s stop
 sudo nginx
