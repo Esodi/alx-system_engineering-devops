@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # Bash Script to install and configure nginx server
 
-sudo apt update
+sudo apt-get update -y -qq
 
-sudo apt install nginx -y
+sudo apt-get install nginx -y
 
 sudo sed s/80 default_server;/80 default_server;\n\troot \/var\/www\/html;/g /etc/nginx/sites-available/default
 
