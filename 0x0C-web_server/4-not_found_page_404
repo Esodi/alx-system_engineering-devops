@@ -5,7 +5,7 @@ sudo apt-get update -y -qq
 
 sudo apt-get install nginx -y
 
-sudo service nginx start
+sudo nginx
 
 sudo p /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.x
 
@@ -21,4 +21,5 @@ echo "Ceci n'est pas une page" | sudo tee /var/www/html/err404.html
 
 sudo sed -i '25i\	error_page 404 /err404.html;' /etc/nginx/sites-available/default
 
-sudo service nginx restart
+sudo nginx -s stop
+sudo nginx
