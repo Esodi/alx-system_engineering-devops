@@ -13,8 +13,15 @@ cp /var/www/html/index.index.nginx-debian.html /var/www/html/index.index.nginx-d
 
 echo -e "Hello World!" > /var/www/html/index.index.nginx-debian.html
 
-sudo sed -i '24i\ rewrite^/redirect_me https://www.google.com permanent;' /etc/nginx/sites-available/default
+echo 'server {
+    listen 80;
+    server_name your_domain.com; # Change this to your actual domain
 
-sudo ln -s etc/nginx/sites-available/default etc/nginx/sites-enabled
+    location /redirect_me {
+        return 301 http://new_domain.com/new_page; # Change this to your desired redirection URL
+    }
+}' | sudo tee /etc/nginx/sites-available/redirect_config
+
+sudo ln -s etc/nginx/sites-available/redirect_config etc/nginx/sites-enabled
 
 sudo service nginx restart
