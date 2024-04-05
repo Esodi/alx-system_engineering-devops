@@ -7,7 +7,7 @@ sudo apt-get install nginx -y
 
 sudo service nginx start
 
-sudo sed s/80 default_server;/80 default_server;\n\troot \/var\/www\/html;/g /etc/nginx/sites-available/default
+sudo sed -i 's/80 default_server;/80 default_server;\n\troot \/var\/www\/html;/g' /etc/nginx/sites-available/default
 
 sudo kill -s HUP $(pgrep nginx)
 
