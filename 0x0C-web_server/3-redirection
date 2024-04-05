@@ -5,27 +5,13 @@ sudo apt-get update -y -qq
 
 sudo apt-get install nginx -y
 
-sudo nginx
+sudo service nginx start
 
-sudo sed -i 's/80 default_server;/80 default_server;\n\troot \/var\/www\/html;/g' /etc/nginx/sites-available/default
+sudo sed s/80 default_server;/80 default_server;\n\troot \/var\/www\/html;/g /etc/nginx/sites-available/default
 
-sudo cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.x
+sudo sed s/server_name _;/server_name _;\n\n\tlocation /redirect_me {\n\t\treturn 301 https://google.com;\n\t}/ /etc/nginx/sites-available/default
 
-sudo truncate -s 0 /var/www/html/index.nginx-debian.html
+sudo kill -s HUP $(pgrep nginx)
 
-echo -e "Hello World!" | sudo tee /var/www/html/index.index.nginx-debian.html
+echo "Hello World!" | sudo tee /var/www/html/index.html
 
-sudo touch redirect_config
-
-echo 'server {
-    listen 80;
-
-    location /redirect_me {
-        return 301 http://google.com/;
-    }
-}' | sudo tee /etc/nginx/sites-available/redirect_config
-
-sudo ln -s -f /etc/nginx/sites-available/redirect_config /etc/nginx/sites-enabled/redirect_config
-
-sudo nginx -s stop
-sudo nginx
