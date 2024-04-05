@@ -9,7 +9,9 @@ sudo service nginx start
 
 sudo sed -i 's/80 default_server;/80 default_server;\n\troot \/var\/www\/html;/g' /etc/nginx/sites-available/default
 
-sudo sed -i 's/server_name _;/server_name _;\n\n\tlocation \/redirect_me {\n\t\treturn 301 https:\/\/google.com;\n\t}/' /etc/nginx/sites-available/default
+redirect='s/server_name _;/server_name _;\n\n\tlocation \/redirect_me {\n\t\treturn 301 https:\/\/google.com;\n\t}/'
+
+sudo sed -i "$redirect" /etc/nginx/sites-available/default
 
 sudo kill -s HUP $(pgrep nginx)
 

@@ -5,21 +5,12 @@ sudo apt-get update -y -qq
 
 sudo apt-get install nginx -y
 
-sudo nginx
+sudo service nginx start
 
-sudo cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.x
+sudo sed -i 's/80 default_server;/80 default_server;\n\troot \/var\/www\/html;/g' /etc/nginx/sites-available/default
 
-sudo truncate -s 0 /var/www/html/index.nginx-debian.html
+sudo sed -i 's/server_name _;/server_name _;\n\n\tlocation \/redirect_me {\n\t\treturn 301 https:\/\/google.com;\n\t}/' /etc/nginx/sites-available/default
 
-echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html
+sudo kill -s HUP $(pgrep nginx)
 
-sudo sed -i '24i\	rewrite ^/redirect_me https://www.google.com' /etc/nginx/sites-available/default
-
-sudo touch /var/www/html/err404.html
-
-echo "Ceci n'est pas une page" | sudo tee /var/www/html/err404.html
-
-sudo sed -i '25i\	error_page 404 /err404.html;' /etc/nginx/sites-available/default
-
-sudo nginx -s stop
-sudo nginx
+echo "Hello World!" | sudo tee /var/www/html/index.html
