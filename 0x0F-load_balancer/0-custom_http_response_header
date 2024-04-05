@@ -13,4 +13,4 @@ else
 	sudo sed -i '49i\	add_header X-Served-By "446562-web-02";' /etc/nginx/sites-enabled/default
 fi
 
-sudo kill -s HUP "$(pgrep nginx)"
+sudo systemctl restart nginx

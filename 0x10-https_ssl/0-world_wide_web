@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# Bash script that will display information about subdomains.
+
+function myfunct() {
+	if [[ "$(echo "$1" | awk '/www/')" == "www" ]]; then
+		echo "The subdomain www is a A record and points to 100.26.157.98"
+	elif [[ "$(echo "$1" | awk '/lb-01/')" == "lb-01" ]]; then
+		echo "The subdomain lb-01 is a A record and points to 100.26.157.98"
+	elif [[ "$(echo "$1" | awk '/web-01/')" == "web-01" ]]; then
+                echo "The subdomain web-01 is a A record and points to 54.237.63.1"
+	elif [[ "$(echo "$1" | awk '/web-02/')" == "web-02" ]]; then
+                echo "The subdomain web-02 is a A record and points to 100.25.156.155"
+	else
+		echo "The subdomain www is a A record and points to 100.26.157.98"
+		echo "The subdomain lb-01 is a A record and points to 100.26.157.98"
+		echo "The subdomain web-01 is a A record and points to 54.237.63.1"
+		echo "The subdomain web-02 is a A record and points to 100.25.156.155"
+	fi
+}
+
+if [ "$#" -eq 2 ]; then
+	domain="$2"
+else
+	domain="$1"
+fi
+
+myfunct "$domain"
