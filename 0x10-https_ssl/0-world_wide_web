@@ -11,10 +11,10 @@ function myfunct() {
 	elif [[ "$(echo "$1" | awk '/web-02/')" == "web-02" ]]; then
                 echo "The subdomain web-02 is a A record and points to 100.25.156.155"
 	else
-		echo "The subdomain www is a A record and points to 100.26.157.98"
-		echo "The subdomain lb-01 is a A record and points to 100.26.157.98"
-		echo "The subdomain web-01 is a A record and points to 54.237.63.1"
-		echo "The subdomain web-02 is a A record and points to 100.25.156.155"
+		echo "The subdomain www is a A record and points to 54.210.47.110"
+		echo "The subdomain lb-01 is a A record and points to 54.210.47.110"
+		echo "The subdomain web-01 is a A record and points to 34.198.248.145"
+		echo "The subdomain web-02 is a A record and points to 54.89.38.100"
 	fi
 }
 
