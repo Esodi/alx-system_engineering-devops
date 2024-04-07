@@ -5,7 +5,7 @@ sudo apt-get update -y -qq
 
 sudo apt-get install nginx -y
 
-sudo nginx
+sudo service nginx start
 
 if [[ "$(hostname)" == "446562-web-01" ]]; then
 	sudo sed -i '49i\	add_header X-Served-By "446562-web-01";' /etc/nginx/sites-enabled/default
