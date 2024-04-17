@@ -3,5 +3,6 @@
 sudo apt update -y -qq
 sudo apt install nginx -y
 sudo systemctl start nginx
-sudo sed -i 's/user www-data;/#user www-data;\nuser nginx;/' /etc/nginx/nginx.conf
+sudo sed -i 's/^user\s\+\w\+;/user nginx;/' /etc/nginx/nginx.conf
+sudo sed -i 's/listen\s\+[0-9]\{1,\}/listen 0.0.0.0:8080;/' /etc/nginx/nginx.conf
 sudo systemctl restart nginx
