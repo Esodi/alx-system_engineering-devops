@@ -3,6 +3,8 @@
 sudo apt update -y -qq
 sudo apt install nginx -y
 sudo systemctl start nginx
+sudo adduser --system --group --shell /sbin/nologin nginx
+sudo chown -R nginx:nginx /etc/nginx /var/lib/nginx
 sudo sed -i 's/^user\s\+\w\+;/user nginx;/' /etc/nginx/nginx.conf
 sudo sed -i 's/listen\s\+[0-9]\{1,\}/listen 0.0.0.0:8080;/' /etc/nginx/nginx.conf
 sudo systemctl restart nginx
