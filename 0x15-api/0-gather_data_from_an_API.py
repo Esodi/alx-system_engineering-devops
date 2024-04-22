@@ -21,13 +21,17 @@ def req(inpt):
         td = [i for i in lst if i['completed'] is True]
         tot = len(lst)
         td_count = len(td)
-        EMPLOYEE_NAME = int(inpt)
-        NUMBER_OF_DONE_TASKS = td_count
-        TOTAL_TASKS = tot
+        name = None
+        for h in td:
+            if h['id'] == id:
+                name = h.get('name')
+        todos_done = td_count
+        todos_count = tot
         print(
-                'Employee {} is done with '.format(EMPLOYEE_NAME) +
-                'tasks({}/{}):'.format(NUMBER_OF_DONE_TASKS, TOTAL_TASKS)
+                'Employee {} is done with tasks({}/{}):\
+'.format(name, todos_done, todos_count)
                 )
+        name = None
         for j in td:
             print(f"\t {j['title']}")
     except urllib.error.HTTPError as e:
