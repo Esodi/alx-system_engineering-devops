@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 """ Python script that, using this REST API, for a given employee ID """
 
-import urllib.request
-import sys
+
 import json
+import sys
+import urllib.request
 
 
 def req(inpt):
@@ -22,10 +23,10 @@ def req(inpt):
         td_count = len(td)
         EMPLOYEE_NAME = int(inpt)
         NUMBER_OF_DONE_TASKS = td_count
-        TOTAL_NUMBER_OF_TASKS = tot
+        TOTAL_TASKS = tot
         print(
-                f'Employee {EMPLOYEE_NAME} is done with ' +
-                f'tasks({NUMBER_OF_DONE_TASKS}/{TOTAL_NUMBER_OF_TASKS}):'
+                'Employee {} is done with '.format(EMPLOYEE_NAME) +
+                'tasks({}/{}):'.format(NUMBER_OF_DONE_TASKS, TOTAL_TASKS)
                 )
         for j in td:
             print(f"\t {j['title']}")
