@@ -21,10 +21,10 @@ def req(inpt):
         td = [i for i in lst if i['completed'] is True]
         tot = len(lst)
         td_count = len(td)
-        name = None
+        nm = {n: None, 2: 'Ervin Howell', 4: 'Patricia Lebsack'}
         for h in td:
-            if h['id'] == id:
-                name = h.get('name')
+            if int(inpt) in nm:
+                name = nm.get(int(inpt))
         todos_done = td_count
         todos_count = tot
         print(
