@@ -8,20 +8,24 @@ import json
 
 def req(inpt):
     """ input processor """
-    url = f'https://jsonplaceholder.typicode.com/todos/{inpt}'
+    url = f'https://jsonplaceholder.typicode.com/todos/'
     try:
         with urllib.request.urlopen(url) as resp:
             read = resp.read()
             data = json.loads(read)
-        td = [t for t in data if t['completed']]
-        tot = len(data)
+        lst = []
+        for n in range(len(data)):
+            if data[n]['userId'] == int(inpt):
+                    lst.append(data[n])
+        td = [i for i in lst if i['completed'] == True]
+        tot = len(lst)
         td_count = len(td)
-        EMPLOYEE_NAME = data[0].get('name')
+        EMPLOYEE_NAME = int(inpt)
         NUMBER_OF_DONE_TASKS = td_count
         TOTAL_NUMBER_OF_TASKS = tot
         print(f'Employee {EMPLOYEE_NAME} is done with tasks({NUMBER_OF_DONE_TASKS}/{TOTAL_NUMBER_OF_TASKS}):')
-        for i in td:
-            print(f"\t {i['title']}")
+        for j in td:
+            print(f"\t {j['title']}")
     except urllib.error.HTTPError as e:
         print(f'Error: {e}')
 
