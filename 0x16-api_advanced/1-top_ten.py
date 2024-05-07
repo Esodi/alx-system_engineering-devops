@@ -15,5 +15,5 @@ def top_ten(subreddit):
         for i, post in enumerate(lst[:10], 1):
             title = post['data']['title']
             print(title)
-    except:
+    except Exception:
         print(None)
