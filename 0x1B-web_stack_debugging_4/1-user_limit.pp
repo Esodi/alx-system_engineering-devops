@@ -1,11 +1,12 @@
 # changing for removing error massages
 
-exec { 'hard-file-limit':
-  command => 'sed -i "/holberton hard nofile 4/ holberton hard nofile 50000/" /etc/security/limits.conf',
+exec { 'increase-hard-file-limit-holberton-user':
+  command => 'sed -i "/holberton hard/s/4/50000/" /etc/security/limits.conf',
   path    => '/usr/local/bin/:/bin/'
 }
 
-exec { 'soft-file-limit':
-  command => 'sed -i "/holberton soft nofile 5/holberton soft nofile 50000/" /etc/security/limits.conf',
+exec { 'increase-soft-file-limit-for-holberton-user':
+  command => 'sed -i "/holberton soft/s/5/50000/" /etc/security/limits.conf',
   path    => '/usr/local/bin/:/bin/'
 }
+
